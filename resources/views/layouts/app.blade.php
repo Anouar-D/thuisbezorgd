@@ -19,7 +19,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light shadow-sm bg-orange">
+        <nav class="navbar navbar-expand-md navbar-light bg-orange" style="z-index: 100;">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="{{ asset('storage/logo/thuisbezorgd-logo-full.png') }}" alt="thuisbezorgd" width="200">
@@ -48,11 +48,13 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->first_name.' '.Auth::user()->last_name }} <span class="caret"></span>
-                                </a>
+                                </a>                                
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('user.index') }}">Mijn Profiel</a>
+                                    <a class="dropdown-item" href="{{ route('myOrders') }}">Mijn Bestellingen</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -70,9 +72,10 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4" style="overflow-x: hidden;">
             @yield('content')
         </main>
     </div>
+    @include('partials.footer')
 </body>
 </html>

@@ -18,15 +18,23 @@
             <div class="row justify-content-center">
                 <div class="col-md-8 mt-4">
                     <div class="card">
-                        <div class="card-header text-center">My Orders</div>
+                        <div class="card-header text-center">Gezochte Restaurants</div>
                         <div class="card-body">
                             @if (session('status'))
                                 <div class="alert alert-success" role="alert">
                                     {{ session('status') }}
                                 </div>
                             @endif
-
-                            Welkom bij Thuisbezorgd.nl
+                            @if(isset($restaurants[0]))
+                                @foreach ($restaurants as $restaurant)
+                                    <a href="{{ route('restaurants.show', ['restaurant' => $restaurant->id]) }}" class="restaurant-link text-center">{{ $restaurant->title }}</a>
+                                @endforeach
+                            @else
+                                Sorry, We hebben geen restaurant met het gewensde naam in onze systeem, dus geniet van de kittengif 
+                                <div class="container-fluid text-center mt-1">
+                                    <img src="https://media.tenor.com/images/bcf4d183aefc4cb5a559dafc0c3c7435/tenor.gif" alt="kittengif" class="img-fluid">
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>

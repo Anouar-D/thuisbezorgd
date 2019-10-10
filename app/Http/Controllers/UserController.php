@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use App\Restaurant;
 use Auth;
 
 class UserController extends Controller
@@ -26,7 +27,15 @@ class UserController extends Controller
     }
 
     public function showRestaurant(){
-        return view('user.restaurant');
+        $restaurants = Restaurant::where('user_id', Auth::id())->get();
+        $value = false;
+        foreach($restaurants as $restaurant){
+            if(isset($restaurant)){
+                $value = true;
+            }
+        }
+
+        return view('user.restaurant')->with('restaurants', $restaurants)->with('value', $value);
     }
 
     public function showPasswordField(){

@@ -54,6 +54,7 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('user.index') }}">Mijn Profiel</a>
+                                    <a class="dropdown-item" href="{{ route('cart') }}">Winkelwagen</a>
                                     <a class="dropdown-item" href="{{ route('myOrders') }}">Mijn Bestellingen</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -76,6 +77,7 @@
             @yield('content')
         </main>
     </div>
+    @yield('scripts')
     @include('partials.footer')
 </body>
 </html>

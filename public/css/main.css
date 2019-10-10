@@ -71,3 +71,38 @@ footer {
   font-size: 1.5em;
 }
 
+.user-link {
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.user-link a {
+  color: #000;
+  text-decoration: none;
+}
+
+.user-link:hover {
+  transition: 0.3s;
+  background: #FF8000;
+}
+
+.user-link:hover a {
+  color: #FFF;
+}
+
+.restaurant-link {
+  text-decoration: none;
+  color: #000;
+  border-radius: 5px;
+  padding: 5px;
+  width: 100%;
+  display: block;
+}
+
+.restaurant-link:hover {
+  transition: 0.3s;
+  background: #FF8000;
+  color: #FFF;
+  text-decoration: none;
+}
+

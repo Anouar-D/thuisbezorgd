@@ -14,11 +14,14 @@
     <div class="container mb-5">
         <div class="row justify-content-center">
             <div class="col-md-5 mt-4 border-right">
-                <h4><b>Mijn Restaurants</b></h4>
-                <ul>
+                <h4><b>Mijn Restaurants</b> <a href="{{ route('restaurants.create') }}" class="btn btn-primary text-white ml-5">Restaurant toevoegen<a></h4>
+                @if($value)
+                    @foreach ($restaurants as $restaurant)
+                        <a href="{{ route('restaurants.show', $restaurant->id) }}" class="m-0 restaurant-link">{{$restaurant->title}}</a>
+                    @endforeach
+                @else
                     <li>U heeft geen restaurant aangegeven.</li>
-                </ul>
-                <a href="" class="btn btn-primary text-white mt-3">Restaurant toevoegen<a>
+                @endif
             </div>
             <div class="col-md-2 mt-4 border-left">
                 @include('partials.usermenu')

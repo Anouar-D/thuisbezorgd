@@ -8,10 +8,7 @@
         <div class="col-sm-6 col-md-6 col-lg-6">
             <h3 class="text-white">Eten bestellen in</h3>
             <div class="input-group md-form form-sm form-2 pl-0">
-                <input class="form-control my-0 py-1 blue-border" type="text" placeholder="&#128205; Adres, b.v. Amsterdam 10" aria-label="Search">
-                <div class="input-group-append">
-                    <span class="input-group-text blue lighten-2" id="basic-text1">Zoek</span>
-                </div>
+                @include('partials.search')
             </div>
         </div>
     </div>
@@ -21,15 +18,16 @@
             <div class="row justify-content-center">
                 <div class="col-md-8 mt-4">
                     <div class="card">
-                        <div class="card-header text-center">Restaurants in uw Buurt</div>
+                        <div class="card-header text-center">Alle Restaurants</div>
                         <div class="card-body">
                             @if (session('status'))
                                 <div class="alert alert-success" role="alert">
                                     {{ session('status') }}
                                 </div>
                             @endif
-
-                            Welkom bij Thuisbezorgd.nl
+                            @foreach ($restaurants as $restaurant)
+                                <a href="{{ route('restaurants.show', ['restaurant' => $restaurant->id]) }}" class="restaurant-link text-center">{{ $restaurant->title }}</a>
+                            @endforeach
                         </div>
                     </div>
                 </div>

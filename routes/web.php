@@ -20,7 +20,7 @@ Route::get('/user/myorders', 'UserController@showOrders')->name('myOrders')->mid
 Route::get('/user/myrestaurant', 'UserController@showRestaurant')->name('myRestaurant')->middleware('auth');
 Route::get('/user/password', 'UserController@showPasswordField')->name('myPassword')->middleware('auth');
 Route::patch('/user/password/update', 'UserController@changePassword')->name('changePassword')->middleware('auth');
-Route::post('/search', 'RestaurantController@search')->name('search');
+Route::post('/search', 'SearchController@search')->name('search');
 // end custom links
 
 // cart routes
@@ -32,5 +32,5 @@ Route::post('/cart', 'ShoppingcartController@addToCart')->name('cart.add')->midd
 Route::resource('/user', 'UserController')->middleware('auth');
 Route::resource('/restaurants', 'RestaurantController')->middleware('auth');
 Route::resource('/order', 'OrderController')->middleware('auth');
-Route::resource('/consumable', 'ConsumableController')->middleware('auth');
+Route::resource('restaurants/{restaurant_id}/consumable', 'ConsumableController')->middleware('auth');
 // end resource links

@@ -7,6 +7,7 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\Restaurant;
+use App\Order;
 use Auth;
 
 class UserController extends Controller
@@ -23,7 +24,8 @@ class UserController extends Controller
     }
 
     public function showOrders(){
-        return view('user.order');
+        $orders = Order::with('consumables')->where('user_id', Auth::id())->get();
+        return view('user.order')->with('orders', $orders);
     }
 
     public function showRestaurant(){

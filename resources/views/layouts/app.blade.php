@@ -49,12 +49,13 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->first_name.' '.Auth::user()->last_name }} <span class="caret"></span>
+                                    {{ Auth::user()->first_name.' '.Auth::user()->last_name }} <span class="ml-2">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }}</span>                                    
+                                    <span class="caret"></span>
                                 </a>                                
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('user.index') }}">Mijn Profiel</a>
-                                    <a class="dropdown-item" href="{{ route('cart') }}">Winkelwagen</a>
+                                    <a class="dropdown-item" href="{{ route('cart') }}">Winkelwagen <span class="ml-2">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }}</span></a>
                                     <a class="dropdown-item" href="{{ route('myOrders') }}">Mijn Bestellingen</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

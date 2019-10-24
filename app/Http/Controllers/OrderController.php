@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Order;
 use App\Consumable;
-use App\Consumable_Order;
+use App\ConsumableOrder;
 use Auth;
 
 class OrderController extends Controller
@@ -39,12 +39,11 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $items = unserialize($request->items);
-        // dd($items);
         $order = new Order();
         $order->user_id = Auth::id();
         if($order->save()){
             foreach($items as $item){
-                $consumable_order = new Consumable_Order;
+                $consumable_order = new ConsumableOrder;
                 $consumable_order->consumable_id = $item['consumable_id'];
                 $consumable_order->restaurant_id = $item['restaurant_id'];
                 $consumable_order->order_id = $order->id;

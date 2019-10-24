@@ -22,6 +22,8 @@ class CreateRestaurantsTable extends Migration
             $table->string('zipcode');
             $table->string('city');
             $table->string('phone');
+            $table->time('opened_at');
+            $table->time('closed_at');
             $table->timestamps();
         });
     }

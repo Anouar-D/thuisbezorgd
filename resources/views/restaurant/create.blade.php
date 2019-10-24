@@ -2,6 +2,10 @@
 
 @section('content')
     
+    <?php 
+        $start = strtotime('12:00 AM');
+        $end   = strtotime('11:59 PM');
+    ?>
     <img src="{{ asset('storage/banners/pizza-banner.jpg') }}" alt="pizza banner"  class="img-fluid negative-mt-8 banner" style="z-index: -1000;">
     <div class="container-fluid negative-mt-8" id="mask" style="z-index: -1000;"></div>
     <div class="container-fluid p-1 d-flex justify-content-center text-center">
@@ -93,9 +97,43 @@
                                 <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Telefoon') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="phone" type="text" class="form-control @error('city') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone">
+                                    <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone">
 
-                                    @error('city')
+                                    @error('phone')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="opened_at" class="col-md-4 col-form-label text-md-right">{{ __('Openingtijd') }}</label>
+
+                                <div class="col-md-6">
+                                    <select id="opened_at" class="form-control @error('opened_at') is-invalid @enderror" name="opened_at" required>
+                                        <?php for($i = $start;$i<=$end;$i+=900){ ?>  
+                                            <option value='<?php echo date('H:i', $i); ?>'><?php echo date('H:i', $i); ?></option>;
+                                        <?php } ?>
+                                    </select>
+
+                                    @error('opened_at')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="closed_at" class="col-md-4 col-form-label text-md-right">{{ __('Sluitingstijd') }}</label>
+
+                                <div class="col-md-6">
+                                    <select id="closed_at" class="form-control @error('closed_at') is-invalid @enderror" name="closed_at" required>
+                                        <?php for($i = $start;$i<=$end;$i+=900){ ?>  
+                                            <option value='<?php echo date('H:i', $i); ?>'><?php echo date('H:i', $i); ?></option>;
+                                        <?php } ?>
+                                    </select>
+
+                                    @error('closed_at')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>

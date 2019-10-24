@@ -10,12 +10,6 @@ use Auth;
 
 class RestaurantController extends Controller
 {
-
-    public function search(Request $request){
-        $restaurants = Restaurant::where('title', 'like', $request->search.'%')->orderBy('title', 'ASC')->get();
-        return view('restaurant.search')->with('restaurants', $restaurants);
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -62,6 +56,8 @@ class RestaurantController extends Controller
         $restaurant->zipcode = $request->zipcode;
         $restaurant->city = $request->city;
         $restaurant->phone = $request->phone;
+        $consumable->opened_at = $request->opened_at;
+        $consumable->closed_at = $request->closed_at;
         if($restaurant->save()){
             return redirect()->route('myRestaurant')->with('success', 'Restaurant toegevoegen gelukt');
         }
@@ -76,10 +72,10 @@ class RestaurantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id, Request $request)
+    public function show($restaurant_id, Request $request)
     {
-        $restaurant = Restaurant::with('Consumable')->findOrFail($id);
-        $request->session()->put('restaurant_id', $id);
+        $restaurant = Restaurant::with('Consumable')->findOrFail($restaurant_id);
+        // $request->session()->put('restaurant_id', $id);
         return view('restaurant.show')->with('restaurant', $restaurant);
     }
 
@@ -118,6 +114,8 @@ class RestaurantController extends Controller
             'zipcode' => ['required', 'string', 'regex:/^[1-9][0-9]{3} ?(?!sa|sd|ss)[a-z]{2}$/i', 'max:8'],
             'city' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'string', 'regex:/^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$/', 'max:12'],
+            'opened_at' => ['required'],
+            'closed_at' => ['required'],
         ]);
 
         if(Auth::id() === $restaurant->user_id){
@@ -127,6 +125,8 @@ class RestaurantController extends Controller
             $restaurant->zipcode = $request->zipcode;
             $restaurant->city = $request->city;
             $restaurant->phone = $request->phone;
+            $restaurant->opened_at = date('H:i', $request->opened_at);
+            $restaurant->closed_at = date('H:i', $request->closed_at);
             if($restaurant->save()){
                 return redirect()->route('myRestaurant')->with('status', 'Restaurant geüpdated!');
             }

@@ -35,9 +35,8 @@ class ConsumableController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $restaurantId)
     {
-        $restaurant_id = $request->session()->get('restaurant_id');
         $consumable = new Consumable;
 
         $request->validate([
@@ -46,7 +45,7 @@ class ConsumableController extends Controller
             'price' => ['required', 'numeric'],
         ]);
 
-        $consumable->restaurant_id = $restaurant_id;
+        $consumable->restaurant_id = $restaurantId;
         $consumable->name = $request->title;
         if($request->category > 0 && $request->category < 4){
             $consumable->category = $request->category;
@@ -70,7 +69,7 @@ class ConsumableController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $restaurantId, $id)
     {
         $consumable = Consumable::findOrFail($id);
         return view('consumable.show')->with('consumable', $consumable);

@@ -13,7 +13,7 @@
     @include('partials.status')
     <div class="container mb-5">
         <div class="row justify-content-center">
-            <div class="col-md-5 mt-4 border-right">
+            <div class="col-md-5 mt-4 border-right shadow-sm bg-light p-3">
                 <h4><b>Recente Bestellingen Bij</b></h4>
                 <ul>
                     <li>U heeft nog geen bestellingen geplaatst.</li>

@@ -28,7 +28,7 @@
                         <div class="card-header bg-orange text-white">
                             <span class="btn float-left text-white">{{ $restaurant->title }}</span>
                             @if(Auth::id() === $restaurant->user_id)
-                                <a href="{{ route('consumable.create') }}" class="btn btn-primary float-right">Product toevoegen</a>
+                                <a href="{{ route('consumable.create', $restaurant->id) }}" class="btn btn-primary float-right">Product toevoegen</a>
                                 <a href="{{ route('restaurants.edit', ['restaurant' => $restaurant->id]) }}" class="btn btn-secondary float-right">Restaurant wijzigen</a>
                             @endif
                         </div>
@@ -40,7 +40,7 @@
                             @endif
                             @if($threshold)
                                 @foreach($restaurant->consumable as $consumable)
-                                    <a href="{{ route('consumable.show', ['consumable' => $consumable->id]) }}" class="restaurant-link">
+                                    <a href="{{ route('consumable.show', [$restaurant, $consumable]) }}" class="restaurant-link">
                                         <span class="">{{$consumable->name}}</span>
                                         <span class="float-right">&euro;{{ number_format($consumable->price, 2) }}</span>
                                     </a>

@@ -25,16 +25,16 @@ class ShoppingcartController extends Controller
         return view('cart.index')->with('cart', $cart);
     }
 
-    public function addToCart(Request $request) 
+    public function addToCart(Request $request, $consumable_id) 
     {
-        $consumables = Consumable::find($request->consumable);
+        $consumables = Consumable::find($consumable_id);
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
         $cart->add($consumables, $consumables->id);
         $request->session()->put('cart', $cart);
         // dd($cart);
 
-        return redirect()->back()->with('success', 'The product has succesfully been added to the cart.');
+        return redirect()->back()->with('status', 'The product has succesfully been added to the cart.');
     }
 
     public function getCart()

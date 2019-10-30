@@ -22,6 +22,7 @@
                <div><b>Postcode: </b>{{ Auth::user()->zipcode }}</div>
                <div><b>Plaats: </b>{{ Auth::user()->city }}</div>
                <a href="{{ route('user.edit', Auth::id()) }}" class="btn btn-primary mt-3">Gegevens Wijzigen</a>
+               <a href="{{ route('myPassword') }}" class="btn btn-secondary mt-3">Wachtwoord Wijzigen</a>
             </div>
             <div class="col-md-2 mt-4 border-left">
                 @include('partials.usermenu')

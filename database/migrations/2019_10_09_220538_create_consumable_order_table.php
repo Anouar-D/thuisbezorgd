@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateConsumableOrdersTable extends Migration
+class CreateConsumableOrderTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateConsumableOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('consumable__orders', function (Blueprint $table) {
+        Schema::create('consumable_order', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('consumable_id')->unsigned();
             $table->bigInteger('restaurant_id')->unsigned();
@@ -30,6 +30,6 @@ class CreateConsumableOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('consumable__orders');
+        Schema::dropIfExists('consumable_order');
     }
 }

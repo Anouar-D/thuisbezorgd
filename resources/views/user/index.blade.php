@@ -14,14 +14,15 @@
     <div class="container mb-5">
         <div class="row justify-content-center">
             <div class="col-md-5 mt-4 border-right">
-                <h4><b>Recente Bestellingen Bij</b></h4>
-                <ul>
-                    <li>U heeft nog geen bestellingen geplaatst.</li>
-                </ul>
-                <h4><b>Recente Bestellingen</b></h4>
-                <ul>
-                    <li>U heeft nog geen bestellingen geplaatst.</li>
-                </ul>
+                <h4 class="pb-2"><b>Mijn Gegevens</b></h4>
+                <div><b>Naam: </b>{{ Auth::user()->first_name.' '.Auth::user()->last_name }}</div>
+                <div><b>Email: </b>{{ Auth::user()->email }}</div>
+                <div><b>Telefoon: </b>{{ Auth::user()->phone }}</div>
+                <div><b>Adres: </b>{{ Auth::user()->address }}</div>
+                <div><b>Postcode: </b>{{ Auth::user()->zipcode }}</div>
+                <div><b>Plaats: </b>{{ Auth::user()->city }}</div>
+                <a href="{{ route('user.edit', Auth::id()) }}" class="btn btn-primary mt-3">Gegevens Wijzigen</a>
+                <a href="{{ route('myPassword') }}" class="btn btn-secondary mt-3">Wachtwoord Wijzigen</a>
             </div>
             <div class="col-md-2 mt-4 border-left">
                 @include('partials.usermenu')

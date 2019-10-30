@@ -25,7 +25,7 @@ Route::post('/search', 'RestaurantController@search')->name('search');
 
 // cart routes
 Route::get('/cart', 'ShoppingcartController@cart')->name('cart')->middleware('auth');
-Route::post('/cart', 'ShoppingcartController@addToCart')->name('cart.add')->middleware('auth');
+Route::get('/cart/add/{consumable_id}', 'ShoppingcartController@addToCart')->name('cart.add')->middleware('auth');
 // end cart routes
 
 // resouce links

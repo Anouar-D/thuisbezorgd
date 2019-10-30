@@ -40,10 +40,10 @@
                             @endif
                             @if($threshold)
                                 @foreach($restaurant->consumable as $consumable)
-                                    <a href="{{ route('consumable.show', ['consumable' => $consumable->id]) }}" class="restaurant-link">
+                                    <p class="p-1">
                                         <span class="">{{$consumable->name}}</span>
-                                        <span class="float-right">&euro;{{ number_format($consumable->price, 2) }}</span>
-                                    </a>
+                                        <a href="{{ route('cart.add', ['consumable_id' => $consumable->id]) }}" class="float-right"><button class="btn btn-primary">&euro;{{ number_format($consumable->price, 2) }}</button></a>
+                                    </p>
                                 @endforeach
                             @else
                                 <li>Nog Geen Producten Aangegeven</li>

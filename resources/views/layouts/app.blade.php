@@ -56,6 +56,9 @@
                                     <a class="dropdown-item" href="{{ route('user.index') }}">Mijn Profiel</a>
                                     <a class="dropdown-item" href="{{ route('cart') }}">Winkelwagen</a>
                                     <a class="dropdown-item" href="{{ route('myOrders') }}">Mijn Bestellingen</a>
+                                    @if(Auth::user()->is_admin)
+                                        <a class="dropdown-item" href="{{ route('admin.index') }}">Admin Paneel</a>                                    
+                                    @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
